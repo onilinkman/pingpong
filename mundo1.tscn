@@ -1,0 +1,157 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://barraPong.tscn" type="PackedScene" id=1]
+[ext_resource path="res://pelota.tscn" type="PackedScene" id=2]
+[ext_resource path="res://mundo1.gd" type="Script" id=3]
+[ext_resource path="res://modelos/fondo2.png" type="Texture" id=4]
+[ext_resource path="res://modelos/lineasSeg.png" type="Texture" id=5]
+[ext_resource path="res://fuente/Error.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://illutionBall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://habilidades.tscn" type="PackedScene" id=8]
+[ext_resource path="res://menuInicio.tscn" type="PackedScene" id=9]
+[ext_resource path="res://contadorIniciar.tscn" type="PackedScene" id=10]
+
+[sub_resource type="TileSet" id=1]
+0/name = "fondo2.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 320, 320 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="DynamicFont" id=2]
+size = 200
+font_data = ExtResource( 6 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 515.77, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 28.3853, 303.674 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 209.573, 317.948 )
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 412.07, 466.07, 0, 0, 0, 0, 412.07, 142.211, 0, 0, 0, 0, 623.04, 144.062, 0, 0, 0, 0, 623.04, 467.92, 0, 0, 0, 0, 412.07, 466.07 )
+}
+
+[node name="Node2D" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 3 )
+ilusion = ExtResource( 7 )
+items = ExtResource( 8 )
+contador = ExtResource( 10 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 310, 310 )
+format = 1
+tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0 )
+
+[node name="lineasSeg" type="Sprite" parent="TileMap"]
+position = Vector2( 519.328, 311.971 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 56.0
+margin_top = 29.0
+margin_right = 434.0
+margin_bottom = 568.0
+custom_fonts/font = SubResource( 2 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 621.991
+margin_top = 29.0
+margin_right = 999.991
+margin_bottom = 568.0
+custom_fonts/font = SubResource( 2 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pelota" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
+position = Vector2( 518.485, 305.961 )
+
+[node name="barra" parent="." instance=ExtResource( 1 )]
+pause_mode = 1
+position = Vector2( 70, 290 )
+
+[node name="barra2" parent="." instance=ExtResource( 1 )]
+pause_mode = 1
+position = Vector2( 960, 290 )
+
+[node name="piso" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="piso"]
+position = Vector2( 519.901, -9.56775 )
+shape = SubResource( 3 )
+
+[node name="piso2" type="StaticBody2D" parent="."]
+position = Vector2( 511.857, 613.737 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="piso2"]
+position = Vector2( 5.22797, -4.76413 )
+shape = SubResource( 3 )
+
+[node name="pared" type="Area2D" parent="."]
+position = Vector2( -26.427, 302.442 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pared"]
+shape = SubResource( 4 )
+
+[node name="pared2" type="Area2D" parent="."]
+position = Vector2( 1060.01, 305.378 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pared2"]
+shape = SubResource( 4 )
+
+[node name="centro" type="Area2D" parent="."]
+position = Vector2( 519.407, 299.454 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="centro"]
+shape = SubResource( 5 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 6 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 412.07, 466.07 )
+rotation = -1.5708
+
+[node name="aparecerObjeto" type="Timer" parent="."]
+one_shot = true
+
+[node name="Node2D" parent="." instance=ExtResource( 9 )]
+[connection signal="body_entered" from="pared" to="." method="_on_pared_body_entered"]
+[connection signal="body_entered" from="pared2" to="." method="_on_pared2_body_entered"]
+[connection signal="body_entered" from="centro" to="." method="_on_centro_body_entered"]
+[connection signal="timeout" from="aparecerObjeto" to="." method="_on_aparecerObjeto_timeout"]
+[connection signal="iniciar" from="Node2D" to="." method="_on_Node2D_iniciar"]
