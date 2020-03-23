@@ -5,8 +5,8 @@ var posOrg
 
 func _ready():
 	posOrg=position
-	
 
+#Ok
 func _physics_process(delta):
 	var posicion=Vector2()
 	var nombre=name
